@@ -1,26 +1,345 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=EB+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* 장마 테마 색상 - 더 깊고 감성적으로 */
+  --rain-mist: #E8EEF2;
+  --rain-light: #B8C5D6;
+  --rain-medium: #8B9DC3;
+  --rain-deep: #5B7399;
+  --rain-dark: #3D5A80;
+  --rain-night: #293241;
+  
+  /* 새로운 장마 색상 팔레트 */
+  --rain-whisper: #F5F8FB;
+  --rain-breath: #E1E9F0;
+  --rain-sigh: #C8D4E3;
+  --rain-dream: #7A8FA8;
+  --rain-storm: #4A6B85;
+  --rain-midnight: #2C3E50;
+  --rain-abyss: #1A252F;
+  
+  /* 감성 색상 */
+  --emotion-nostalgia: #9B8B7E;
+  --emotion-peaceful: #A8DADC;
+  --emotion-melancholy: #7B68A2;
+  --emotion-romantic: #E5B4B4;
+  --emotion-mystery: #6B5B73;
+  --emotion-serenity: #B8D4D1;
+  
+  /* 기본 색상 */
+  --background: linear-gradient(145deg, #F5F8FB 0%, #E8EEF2 25%, #E1E9F0 75%, #C8D4E3 100%);
+  --foreground: #2C3E50;
+  --card-bg: rgba(255, 255, 255, 0.8);
+  --overlay: rgba(0, 0, 0, 0.5);
+  
+  /* 장마 그라데이션 */
+  --rain-gradient-1: linear-gradient(135deg, #E8EEF2 0%, #C8D4E3 50%, #8B9DC3 100%);
+  --rain-gradient-2: linear-gradient(165deg, #F5F8FB 0%, #E1E9F0 30%, #B8C5D6 70%, #7A8FA8 100%);
+  --rain-gradient-3: linear-gradient(45deg, rgba(139, 157, 195, 0.3) 0%, rgba(91, 115, 153, 0.3) 100%);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  min-height: 100vh;
+  font-family: 'Noto Serif KR', 'EB Garamond', serif;
+  line-height: 1.8;
+  letter-spacing: 0.02em;
 }
 
 body {
-  background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--background);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(139, 157, 195, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(91, 115, 153, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 60%, rgba(184, 197, 214, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+/* 감성적인 타이포그래피 */
+h1, h2, h3 {
+  font-family: 'EB Garamond', 'Noto Serif KR', serif;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0.05em;
+}
+
+.rain-title {
+  font-family: 'Crimson Text', 'Noto Serif KR', serif;
+  font-weight: 600;
+  text-shadow: 0 2px 8px rgba(139, 157, 195, 0.3);
+}
+
+.rain-text {
+  font-family: 'Noto Serif KR', serif;
+  font-weight: 300;
+  line-height: 1.9;
+  letter-spacing: 0.03em;
+}
+
+/* 커스텀 스크롤바 */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--rain-whisper);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--rain-light);
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--rain-medium);
+}
+
+/* 장마 애니메이션 키프레임 */
+@keyframes rainDrop {
+  0% {
+    transform: translateY(-100vh) rotate(15deg);
+    opacity: 0;
+  }
+  5% {
+    opacity: 0.7;
+  }
+  95% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(100vh) rotate(15deg);
+    opacity: 0;
+  }
+}
+
+@keyframes gentleFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+}
+
+@keyframes rippleWave {
+  0% {
+    transform: scale(0);
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes textShimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes breathe {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
+
+/* 유틸리티 클래스 */
+@layer components {
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 
+      0 8px 32px rgba(139, 157, 195, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  }
+
+  .glass-effect-dark {
+    background: rgba(139, 157, 195, 0.2);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(139, 157, 195, 0.3);
+    box-shadow: 
+      0 8px 32px rgba(44, 62, 80, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .rain-gradient {
+    background: var(--rain-gradient-1);
+  }
+
+  .rain-gradient-2 {
+    background: var(--rain-gradient-2);
+  }
+
+  .rain-gradient-3 {
+    background: var(--rain-gradient-3);
+  }
+
+  .text-shadow-soft {
+    text-shadow: 0 2px 8px rgba(139, 157, 195, 0.3);
+  }
+
+  .text-rain-shimmer {
+    background: linear-gradient(
+      90deg,
+      var(--rain-dark) 0%,
+      var(--rain-medium) 50%,
+      var(--rain-dark) 100%
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textShimmer 3s ease-in-out infinite;
+  }
+
+  .rain-border {
+    border: 1px solid rgba(139, 157, 195, 0.3);
+    box-shadow: 0 0 20px rgba(139, 157, 195, 0.1);
+  }
+
+  .rain-shadow {
+    box-shadow: 
+      0 10px 40px rgba(139, 157, 195, 0.3),
+      0 5px 15px rgba(139, 157, 195, 0.2);
+  }
+
+  .animate-gentle-float {
+    animation: gentleFloat 6s ease-in-out infinite;
+  }
+
+  .animate-ripple-wave {
+    animation: rippleWave 3s ease-out infinite;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  .animate-breathe {
+    animation: breathe 4s ease-in-out infinite;
+  }
+
+  /* 인터랙티브 효과 */
+  .rain-interactive {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+  }
+
+  .rain-interactive:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+      0 15px 50px rgba(139, 157, 195, 0.4),
+      0 8px 25px rgba(139, 157, 195, 0.3);
+  }
+
+  .rain-interactive:active {
+    transform: translateY(0);
+    transition: all 0.1s ease;
+  }
+
+  /* 질문 컨테이너 특별 효과 */
+  .question-container {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .question-container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+      circle,
+      rgba(139, 157, 195, 0.05) 0%,
+      transparent 70%
+    );
+    animation: gentleFloat 8s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  /* 로딩 애니메이션 */
+  .rain-loading {
+    position: relative;
+  }
+
+  .rain-loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid var(--rain-light);
+    border-top: 2px solid var(--rain-dark);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
 }
