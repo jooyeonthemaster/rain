@@ -1,36 +1,118 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌧️ 장마향 - AI 기반 감성 향수 추천 서비스
 
-## Getting Started
+비 오는 날의 감성을 담은 개인 맞춤 향수 추천 서비스입니다.  
+Gemini AI가 당신의 장마철 감성을 분석하여 30가지 AC'SCENT 향수 중 완벽한 향을 추천해드립니다.
 
-First, run the development server:
+## ✨ 주요 기능
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### 🤖 AI 기반 추천
+- **Gemini AI 분석**: 사용자의 감성과 선호도를 깊이 있게 분석
+- **개인 맞춤 추천**: 30가지 향수 중 매치율 기반 추천
+- **시적 메시지**: AI가 생성하는 개인 맞춤 감성 메시지
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 🎨 혁신적인 UI/UX
+- **7가지 질문 타입**: 각 질문마다 완전히 다른 인터랙션
+  - 풍경 선택: 호버 애니메이션과 물방울 효과
+  - 감정 선택: 이모티콘 카드 + 3D 회전 효과
+  - 소리 선택: 실시간 사운드 비주얼라이저
+  - 색상 선택: 동적 색상 팔레트 + 파티클
+  - 행동 선택: 액션 아이콘 카드
+  - 의미 선택: 대형 타이포그래피 중심
+  - 향 계열: 3D 향수병 모양 선택지
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 🌧️ 몰입감 있는 애니메이션
+- **고급 장마 효과**: 번개, 구름, 다층 빗방울
+- **창문 빗물 효과**: Canvas 기반 실제 창문 빗방울 흘림
+- **글래스모피즘**: 깊이 있는 유리 효과와 블러
+- **마이크로 인터랙션**: 모든 요소에 부드러운 애니메이션
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 📱 완벽한 모바일 최적화
+- **390px 모바일 최적화**: iPhone 14 Pro 기준 완벽 대응
+- **터치 인터랙션**: 모바일 환경에 최적화된 UX
+- **반응형 디자인**: 모든 화면 크기에 대응
 
-## Learn More
+## 🛠️ 기술 스택
 
-To learn more about Next.js, take a look at the following resources:
+- **Frontend**: Next.js 15, TypeScript, Tailwind CSS v3
+- **Animation**: Framer Motion
+- **AI**: Google Generative AI (Gemini Pro)
+- **Design**: 글래스모피즘, 시적 타이포그래피
+- **Deployment**: Vercel 배포 준비
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🚀 설치 및 실행
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. **의존성 설치**
+   \`\`\`bash
+   npm install
+   \`\`\`
 
-## Deploy on Vercel
+2. **환경 변수 설정**
+   \`\`\`bash
+   # .env.local 파일 생성
+   GEMINI_API_KEY=your_gemini_api_key_here
+   NEXT_PUBLIC_APP_URL=http://localhost:3000
+   \`\`\`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. **개발 서버 실행**
+   \`\`\`bash
+   npm run dev
+   \`\`\`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+4. **브라우저에서 확인**
+   \`http://localhost:3000\` 접속
+
+## 🎯 프로젝트 구조
+
+\`\`\`
+src/
+├── app/
+│   ├── api/recommend/     # Gemini AI 추천 API
+│   ├── globals.css        # 장마 테마 스타일
+│   └── page.tsx          # 메인 페이지
+├── components/
+│   ├── QuestionTypes/     # 7가지 질문 UI 컴포넌트
+│   ├── EnhancedRainEffect.tsx   # 고급 장마 애니메이션
+│   ├── WindowRainEffect.tsx     # 창문 빗물 효과
+│   ├── QuestionFlow.tsx         # 질문 플로우 관리
+│   └── ResultPage.tsx          # AI 분석 결과 페이지
+├── data/
+│   ├── perfumes.ts       # 30가지 향수 데이터
+│   └── questions.ts      # 7가지 감성 질문
+├── lib/
+│   └── recommendation.ts # 추천 로직
+└── types/
+    ├── perfume.ts        # 향수 타입 정의
+    └── question.ts       # 질문 타입 정의
+\`\`\`
+
+## 🌈 특별한 경험
+
+### 감성 분석 과정
+1. **풍경 선택**: 장마 시절 가장 인상 깊었던 순간
+2. **감정 탐구**: 비가 올 때 마음속 감정 상태
+3. **청각 경험**: 선호하는 빗소리와 분위기
+4. **시각적 선호**: 비 오는 날 좋아하는 색감
+5. **행동 패턴**: 비 그친 후 하고 싶은 일
+6. **철학적 의미**: 개인에게 장마가 갖는 의미
+7. **후각 연상**: 장마를 향으로 표현한다면
+
+### AI 분석 결과
+- **개인 프로필**: 장마 유형, 감정 상태, 성격 특성
+- **깊이 있는 분석**: 주된 감정, 숨겨진 바람, 계절적 연결
+- **맞춤 추천**: 매치율과 함께 완벽한 향수 제안
+- **시적 메시지**: AI가 생성하는 개인 맞춤 감성 메시지
+
+## 💝 특징
+
+- **감성 중심**: 기능보다 감정과 경험에 집중
+- **예술적 접근**: 상업적이지 않은 순수한 감성 서비스
+- **개인화**: 모든 사용자마다 다른 독특한 경험
+- **몰입감**: 실제 장마를 경험하는 듯한 애니메이션
+
+## 🌟 Live Demo
+
+[장마향 체험하기](http://localhost:3000) *(로컬 개발 환경)*
+
+---
+
+*"비가 내리는 창가에서, 당신만의 향기로 채워가는 조용하고 아름다운 시간들이 삶의 가장 소중한 순간이 됩니다."*
